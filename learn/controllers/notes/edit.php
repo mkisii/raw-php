@@ -1,11 +1,11 @@
-<?php
-
+<?php 
 use Core\App;
 use Core\Database;
 use Core\Validator;
 
 $db = App::container()->resolve(Database::class);
 
+$errors =[];
 
 $currentUserId = 1;
 
@@ -16,7 +16,11 @@ $note = $db->query('select * from notes where id = :id', [
 
 authorize($note['user_id'] === $currentUserId);
 
-view('/notes/show.view.php', [
-    "heading" => "Notes",
-    "note" => $note
+
+// dd($db);
+
+view("notes/edit.view.php", [
+    "heading" => "Update a new Note",
+    "errors" => $errors,
+    'note' => $note
 ]);

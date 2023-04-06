@@ -1,6 +1,8 @@
 <?php
 // Connect to thd Database and execute the query
 
+namespace Core;
+use PDO;
 class Database
 {
     public $connection;
@@ -43,7 +45,7 @@ class Database
 
     public function findOrFail () {
         $result =$this->find();
-        dd($result);
+        // dd($result);
 
         if(! $result){
             abort();
